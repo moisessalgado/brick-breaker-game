@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Walls.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 512, 5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 300, 5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 512, 5 )
+
+[node name="Walls" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Top" type="StaticBody2D" parent="."]
+position = Vector2( 512, -5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+shape = SubResource( 1 )
+
+[node name="Left" type="StaticBody2D" parent="."]
+position = Vector2( -5, 300 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="Right" type="StaticBody2D" parent="."]
+position = Vector2( 1029, 300 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="Botton" type="Area2D" parent="."]
+position = Vector2( 512, 605 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Botton"]
+shape = SubResource( 3 )
+[connection signal="body_has_escaped" from="." to="." method="_on_Walls_body_has_escaped"]
+[connection signal="body_entered" from="Botton" to="." method="_on_Botton_body_entered"]
